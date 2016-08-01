@@ -2,7 +2,7 @@
 
 [![Join the chat at https://gitter.im/deviantony/fig-elk](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/deviantony/fig-elk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-**WARNING: Experimental support of the X-Pack (alpha-4) version of the Elastic stack.**
+**WARNING: Experimental support of 5.x version of the Elastic stack (without X-Pack).**
 
 It is *NOT* recommended to use this in production.
 
@@ -62,10 +62,7 @@ Now that the stack is running, you'll want to inject logs in it. The shipped log
 $ nc localhost 5000 < /path/to/logfile.log
 ```
 
-And then access Kibana UI by hitting [http://localhost:5601](http://localhost:5601) with a web browser and use the following credentials to login:
-
-* user: *elastic*
-* password: *changeme*
+And then access Kibana UI by hitting [http://localhost:5601](http://localhost:5601) with a web browser.
 
 *NOTE*: You'll need to inject data into logstash before being able to create a logstash index in Kibana. Then all you should have to do is to hit the create button.
 
