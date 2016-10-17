@@ -5,5 +5,5 @@ FROM logstash:5
 
 RUN rm /etc/logstash/log4j2.properties
 
-EXPOSE 5000
+EXPOSE 5044
 CMD ["-f", "/etc/logstash/conf.d"]

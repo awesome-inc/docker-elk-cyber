@@ -16,9 +16,17 @@ services:
     volumes:
       - ./logstash/config:/etc/logstash/conf.d
     ports:
-      - "9000:9000"
+      - "5044:5044"
     links:
       - elasticsearch
+  filebeat:
+    build:
+      context: filebeat/
+    volumes:
+      - ./filebeat/filebeat.yml:/filebeat.yml
+      - ./filebeat/log:/log
+    links:
+      - logstash
   kibana:
     build:
       context: kibana/
