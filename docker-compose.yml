@@ -27,6 +27,18 @@ services:
       - ./filebeat/log:/log
     links:
       - logstash
+  provisioner:
+    build:
+      context: provisioner/
+      #args:
+      #  - http_proxy=
+      #  - HTTP_PROXY=
+      #  - https_proxy=
+      #  - HTTPS_PROXY=
+    volumes:
+      - "./provisioner/initial_import:/initial_import"
+    links:
+      - elasticsearch
   kibana:
     build:
       context: kibana/
