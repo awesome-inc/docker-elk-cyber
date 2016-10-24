@@ -1,1 +1,1 @@
-FROM prima/filebeat:5-alpha
+FROM prima/filebeat:5-rc
