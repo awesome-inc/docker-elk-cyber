@@ -21,6 +21,7 @@ filebeat.prospectors:
   paths:
     - /log/*.log
     #- c:\programdata\elasticsearch\logs\*
+  registry_file: /log/.registry
 
   # Exclude lines. A list of regular expressions to match. It drops the lines that are
   # matching any regular expression from the list.
