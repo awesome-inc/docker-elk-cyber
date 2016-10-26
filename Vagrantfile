@@ -57,12 +57,13 @@ Vagrant.configure(2) do |config|
       s.privileged = false
       s.inline = "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile"
   end
-  
-  config.vm.provision :shell, inline: "echo 'vm.max_map_count=262144' >> /etc/sysctl.d/90-es.conf && sysctl -p /etc/sysctl.d/90-es.conf && apt-get update && apt-get -y install docker docker-compose && systemctl -f enable docker && systemctl -f start docker"
-  
+
+  # Increase mmap count for docker host, cf.:
+  # https://www.elastic.co/guide/en/elasticsearch/reference/5.0/vm-max-map-count.html  
+  config.vm.provision :shell, inline: "echo 'vm.max_map_count=262144' >> /etc/sysctl.d/90-es.conf && sysctl -p /etc/sysctl.d/90-es.conf"
+
+  config.vm.provision :docker
   config.vm.provision :docker_compose, 
-    #compose_version: "1.3.2",
-    #executable_install_path: "/opt/bin/docker-compose", 
     yml: "/vagrant/docker-compose.yml", 
     #rebuild: true, 
     project_name: "docker-elk",
