@@ -10,6 +10,17 @@ services:
       - ./elasticsearch/data:/usr/share/elasticsearch/data
     environment:
       ES_JAVA_OPTS: "-Xms1g -Xmx1g"
+  neo4j:
+    build:
+      context: neo4j/
+    volumes:
+      - ./neo4j/data:/data
+    ports:
+      - "7474:7474"
+      - "7473:7473"
+      - "7687:7687"
+    links:
+      - elasticsearch
   logstash:
     build:
       context: logstash/
