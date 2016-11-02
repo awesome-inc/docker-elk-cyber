@@ -15,6 +15,7 @@ services:
       context: logstash/
     volumes:
       - ./logstash/config:/etc/logstash/conf.d
+      - ./logstash/template:/etc/logstash/template
     ports:
       - "5044:5044"
     links:

@@ -66,6 +66,6 @@ Vagrant.configure(2) do |config|
   config.vm.provision :docker_compose, 
     yml: "/vagrant/docker-compose.yml", 
     #rebuild: true, 
-    project_name: "docker-elk",
+    project_name: "docker-elk-cyber",
     run: "always"  
 end
