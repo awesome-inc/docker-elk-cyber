@@ -13,6 +13,13 @@ services:
   logstash:
     build:
       context: logstash/
+      args:
+        - http_proxy=${http_proxy}
+        - HTTP_PROXY=${http_proxy}
+        - https_proxy=${https_proxy}
+        - HTTPS_PROXY=${https_proxy}
+        - no_proxy=${no_proxy}
+        - NO_PROXY=${no_proxy}
     volumes:
       - ./logstash/config:/etc/logstash/conf.d
       - ./logstash/template:/etc/logstash/template
@@ -20,22 +27,16 @@ services:
       - "5044:5044"
     links:
       - elasticsearch
-  filebeat:
-    build:
-      context: filebeat/
-    volumes:
-      - ./filebeat/filebeat.yml:/filebeat.yml
-      - ./filebeat/log:/log
-    links:
-      - logstash
   provisioner:
     build:
       context: provisioner/
-      #args:
-      #  - http_proxy=
-      #  - HTTP_PROXY=
-      #  - https_proxy=
-      #  - HTTPS_PROXY=
+      args:
+        - http_proxy=${http_proxy}
+        - HTTP_PROXY=${http_proxy}
+        - https_proxy=${https_proxy}
+        - HTTPS_PROXY=${https_proxy}
+        - no_proxy=${no_proxy}
+        - NO_PROXY=${no_proxy}
     volumes:
       - "./provisioner/initial_import:/initial_import"
     links:

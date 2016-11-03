@@ -28,6 +28,8 @@ elasticsearch.url: "http://elasticsearch:9200"
 
 # The default application to load.
 # kibana.defaultAppId: "discover"
+#--- cf.: https://www.elastic.co/guide/en/kibana/current/kibana-server-properties.html
+kibana.defaultAppId: "dashboard/Main_Dashboard" 
 
 # If your Elasticsearch is protected with basic authentication, these settings provide
 # the username and password that the Kibana server uses to perform maintenance on the Kibana
