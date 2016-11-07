@@ -22,7 +22,9 @@ services:
         - NO_PROXY=${no_proxy}
     volumes:
       - ./logstash/config:/etc/logstash/conf.d
-      - ./logstash/template:/etc/logstash/template
+    environment:
+      - http_proxy=${http_proxy}
+      - no_proxy=${no_proxy}
     ports:
       - "5044:5044"
     links:

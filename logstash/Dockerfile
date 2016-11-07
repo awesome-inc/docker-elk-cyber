@@ -14,7 +14,12 @@ RUN cd /usr/share/logstash && \
 	echo 'gem "logstash-input-rss2", :path => "/usr/share/logstash-input-rss2"' >> Gemfile && \
 	logstash-plugin install --no-verify
 
-RUN rm /etc/logstash/log4j2.properties
+COPY log4j2.properties /etc/logstash/log4j2.properties
 
 EXPOSE 5044
+
+COPY docker-entrypoint.sh /
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
 CMD ["-f", "/etc/logstash/conf.d"]
