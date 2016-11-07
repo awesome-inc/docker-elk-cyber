@@ -15,11 +15,8 @@ services:
       context: logstash/
       args:
         - http_proxy=${http_proxy}
-        - HTTP_PROXY=${http_proxy}
         - https_proxy=${https_proxy}
-        - HTTPS_PROXY=${https_proxy}
         - no_proxy=${no_proxy}
-        - NO_PROXY=${no_proxy}
     volumes:
       - ./logstash/config:/etc/logstash/conf.d
     environment:
@@ -34,11 +31,8 @@ services:
       context: provisioner/
       args:
         - http_proxy=${http_proxy}
-        - HTTP_PROXY=${http_proxy}
         - https_proxy=${https_proxy}
-        - HTTPS_PROXY=${https_proxy}
         - no_proxy=${no_proxy}
-        - NO_PROXY=${no_proxy}
     volumes:
       - "./provisioner/initial_import:/initial_import"
     links:

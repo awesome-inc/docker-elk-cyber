@@ -1,5 +1,9 @@
 FROM logstash:5
 
+COPY configProxy.sh /
+RUN chmod +x /configProxy.sh
+RUN /configProxy.sh
+
 # Add your logstash plugins setup here
 # Copy source files
 COPY logstash-input-rss2/ /usr/share/logstash-input-rss2/
