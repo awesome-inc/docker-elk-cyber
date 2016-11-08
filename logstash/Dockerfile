@@ -23,6 +23,7 @@ COPY log4j2.properties /etc/logstash/log4j2.properties
 EXPOSE 5044
 
 COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 

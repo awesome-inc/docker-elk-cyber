@@ -3,7 +3,7 @@
 set -e
 
 # check proxy
-if ! [[ -v http_proxy ]]; then exit 0; fi
+if ! [[ ${http_proxy:+1} ]]; then exit 0; fi
 
 echo
 echo "Configure proxy '${http_proxy}' ..."
