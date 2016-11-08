@@ -3,7 +3,7 @@
 set -e
 
 # check proxy
-if [[ -v http_proxy ]]; then
+if [[ ${http_proxy:+1} ]]; then 
 	echo
 	echo "Configure proxy '${http_proxy}' ..."
 	proxyHost=${http_proxy//"http://"} 
