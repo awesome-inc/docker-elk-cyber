@@ -1,0 +1,17 @@
+{
+  "description": "A pipeline to do named entity extraction",
+  "processors": [
+    { 
+      "set": { 
+        "field": "ingest_time", 
+        "value": "{{_ingest.timestamp}}",
+        "override" : false
+      }
+    },
+    { 
+      "opennlp" : { 
+        "field" : "message" 
+      }
+    }
+  ]
+}
