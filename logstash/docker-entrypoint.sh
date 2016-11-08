@@ -2,17 +2,7 @@
 
 set -e
 
-# check proxy
-if [[ ${http_proxy:+1} ]]; then 
-	echo
-	echo "Configure proxy '${http_proxy}' ..."
-	proxyHost=${http_proxy//"http://"} 
-	proxyPort=${proxyHost##*:} 
-	proxyHost=${proxyHost//:*} 
-	proxyPort=${proxyPort//"/"} 
-	# note: assuming same for http/s
-	export LS_JAVA_OPTS="-Dhttp.proxyHost=${proxyHost} -Dhttp.proxyPort=${proxyPort} -Dhttps.proxyHost=${proxyHost} -Dhttps.proxyPort=${proxyPort} -Dhttp.nonProxyHosts=$no_proxy -Dhttps.nonProxyHosts=$no_proxy"
-fi 
+source /config-proxy.sh
 
 # Add logstash as command if needed
 if [ "${1:0:1}" = '-' ]; then

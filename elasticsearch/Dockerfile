@@ -1,7 +1,11 @@
 FROM elasticsearch:5
 
-ENV ES_JAVA_OPTS="-Des.path.conf=/etc/elasticsearch"
+COPY *.sh /
+RUN chmod +x /*.sh
+RUN /install-plugins.sh
 
-RUN /usr/share/elasticsearch/bin/plugin-install https://bintray.com/awesome-inc/generic/download_file?file_path=ingest-opennlp-0.0.1-SNAPSHOT.zip
+COPY elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
 
-CMD ["-E", "network.host=0.0.0.0", "-E", "discovery.zen.minimum_master_nodes=1"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
+CMD ["elasticsearch"]

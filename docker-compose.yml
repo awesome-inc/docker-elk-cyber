@@ -3,6 +3,10 @@ services:
   elasticsearch:
     build:
       context: elasticsearch/
+      args:
+        http_proxy: ${http_proxy}
+        https_proxy: ${https_proxy}
+        no_proxy: ${no_proxy}
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -10,18 +14,20 @@ services:
       - ./elasticsearch/data:/usr/share/elasticsearch/data
     environment:
       ES_JAVA_OPTS: "-Xms1g -Xmx1g"
+      http_proxy: ${http_proxy}
+      no_proxy: ${no_proxy}
   logstash:
     build:
       context: logstash/
       args:
-        - http_proxy=${http_proxy}
-        - https_proxy=${https_proxy}
-        - no_proxy=${no_proxy}
+        http_proxy: ${http_proxy}
+        https_proxy: ${https_proxy}
+        no_proxy: ${no_proxy}
     volumes:
       - ./logstash/config:/etc/logstash/conf.d
     environment:
-      - http_proxy=${http_proxy}
-      - no_proxy=${no_proxy}
+      http_proxy: ${http_proxy}
+      no_proxy: ${no_proxy}
     ports:
       - "5044:5044"
     links:
@@ -30,9 +36,9 @@ services:
     build:
       context: provisioner/
       args:
-        - http_proxy=${http_proxy}
-        - https_proxy=${https_proxy}
-        - no_proxy=${no_proxy}
+        http_proxy: ${http_proxy}
+        https_proxy: ${https_proxy}
+        no_proxy: ${no_proxy}
     volumes:
       - "./provisioner/initial_import:/initial_import"
     links:
