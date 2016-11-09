@@ -6,7 +6,6 @@ COPY logstash-input-rss2/ /usr/share/logstash-input-rss2/
 
 # Install dependencies
 COPY *.sh /
-RUN chmod +x /*.sh
 RUN /install-plugins.sh
 
 COPY log4j2.properties /etc/logstash/log4j2.properties
