@@ -6,8 +6,5 @@ ADD https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/${A
 
 COPY *.sh /
 
-# customized neo4j shell script to support JAVA_OPTS (proxy)
-COPY bin/neo4j.sh bin/neo4j
-
 ENTRYPOINT ["/docker-entrypoint2.sh"]
 CMD ["neo4j"]
