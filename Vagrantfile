@@ -12,6 +12,11 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 9200, host: 9200
   config.vm.network :forwarded_port, guest: 5000, host: 5000
   
+  # forward ports for neo4j
+  config.vm.network :forwarded_port, guest: 7474, host: 7474
+  config.vm.network :forwarded_port, guest: 7473, host: 7473
+  config.vm.network :forwarded_port, guest: 7687, host: 7687
+  
   # just in case there is a HTTP_PROXY configured for the host 
   # system, the virtual machine is going to use it
   if ENV.has_key?("http_proxy")
