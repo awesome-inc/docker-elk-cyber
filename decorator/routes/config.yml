@@ -1,0 +1,54 @@
+server_url: 'http://localhost:3000/api/ai/graph'
+neo4j_url: 'http://localhost:7474/db/data'
+decorate:
+  _all:
+  _node:
+    data:
+      links:
+        - title: Expand...
+          href: '{{config.server_url}}/cypher'
+          method: 'POST'
+          body:
+            query: 'MATCH (u)-[e]-(v) WHERE ID(u)={{doc.metadata.id}} RETURN u,e,v'
+  _edge:
+    data:
+      links:
+        - title: Expand...
+          href: '{{config.server_url}}/cypher'
+          method: 'POST'
+          body:
+            query: 'MATCH (u)-[e]-(v) WHERE ID(e)={{doc.metadata.id}} RETURN u,e,v'
+  Event:
+    data:
+      links:
+        - title: Tweet
+          href: 'https://twitter.com'
+        - title: e-mail Event
+          href: 'mailto://?to=&subject=mailto%20with%20examples&body=http://en.wikipedia.org/wiki/Mailto'
+  Category:
+    data:
+      links:
+        - title: Google Category
+          href: 'https://www.google.com/'
+  Name:
+    data:
+      links:
+        - title: Google Name
+          href: 'https://www.google.com/'
+  TAGGED:
+    data:
+      links:
+        - title: Google Tag
+          href: 'https://www.google.com/'
+  LINKS_TO:
+    data:
+      links:
+        - title: Open Link
+          href: '{{ value.href }}'
+  User:
+    data:
+      links:
+        - title: "Tweet '{{doc.data.screen_name}}' (id:{{doc.metadata.id}}, f:{{doc.data.followers}}/{{doc.data.following}})"
+          href: '{{config.neo4j_url}}'
+        - title: e-mail Event
+          href: 'mailto://?to=&subject=mailto%20with%20examples&body=http://en.wikipedia.org/wiki/Mailto'
