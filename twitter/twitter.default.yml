@@ -1,0 +1,6 @@
+# Manage keys: https://apps.twitter.com/
+# add your keys and rename to "twitter.private.yml"
+consumer_key:       "your_key"
+consumer_secret:    "your_secret"
+oauth_token:        "your_token"
+oauth_token_secret: "your_token_secret"
