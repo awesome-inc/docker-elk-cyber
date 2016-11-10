@@ -18,6 +18,11 @@ decorate:
           method: 'POST'
           body:
             query: 'MATCH (u)-[e]-(v) WHERE ID(e)={{doc.metadata.id}} RETURN u,e,v'
+  Link:
+    data:
+      links:
+        - title: Open
+          href: '{{doc.data.href}}'
   Event:
     data:
       links:
@@ -28,13 +33,18 @@ decorate:
   Category:
     data:
       links:
-        - title: Google Category
-          href: 'https://www.google.com/'
+        - title: "Google '{{doc.data.name}}'"
+          href: 'https://www.google.de/search?q={{doc.data.name}}'
   Name:
     data:
       links:
-        - title: Google Name
-          href: 'https://www.google.com/'
+        - title: "Google '{{doc.data.name}}'"
+          href: 'https://www.google.de/search?q={{doc.data.name}}'
+  Location:
+    data:
+      links:
+        - title: "Show '{{doc.data.name}}' on map"
+          href: 'http://maps.google.com/?q={{doc.data.name}}'
   TAGGED:
     data:
       links:
@@ -48,7 +58,5 @@ decorate:
   User:
     data:
       links:
-        - title: "Tweet '{{doc.data.screen_name}}' (id:{{doc.metadata.id}}, f:{{doc.data.followers}}/{{doc.data.following}})"
-          href: '{{config.neo4j_url}}'
-        - title: e-mail Event
-          href: 'mailto://?to=&subject=mailto%20with%20examples&body=http://en.wikipedia.org/wiki/Mailto'
+        - title: "Show '{{doc.data.screen_name}}' on Twitter"
+          href: 'https://twitter.com/{{doc.data.screen_name}}'
