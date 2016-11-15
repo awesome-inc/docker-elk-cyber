@@ -24,5 +24,8 @@ And then access Kibana UI by hitting [http://localhost:5601](http://localhost:56
  
 ## Graph Analysis
 
-In addition to the standard ELK stack we added a [neo4j](https://neo4j.com/) container including [apoc](https://github.com/neo4j-contrib/neo4j-apoc-procedures) with a decorated REST Api.
+In addition to the standard ELK stack we added a [neo4j](https://neo4j.com/) container including [apoc](https://github.com/neo4j-contrib/neo4j-apoc-procedures).
+You can access the neo4j data browser on [http://localhost:7474/](http://localhost:7474/)
 
+Custom actions on neo4j objects can be configured [HATEOAS style](https://en.wikipedia.org/wiki/HATEOAS) using the `decorator` which wraps the neo4j REST Api to provide custom data links. 
+Browse the current configuration on [http://localhost:3000/api/ai/.config](http://localhost:3000/api/ai/.config).

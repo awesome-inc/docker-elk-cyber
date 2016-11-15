@@ -67,3 +67,13 @@ services:
       NEO4J_AUTH: none
       http_proxy: ${http_proxy}
       no_proxy: ${no_proxy}
+  decorator:
+    build:
+      context: decorator/
+      args:
+        http_proxy: ${http_proxy}
+        no_proxy: ${no_proxy}
+    ports:
+       - "3000:3000"
+    links:
+       - neo4j

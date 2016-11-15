@@ -17,6 +17,9 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 7473, host: 7473
   config.vm.network :forwarded_port, guest: 7687, host: 7687
   
+  # forward ports for decorator
+  config.vm.network :forwarded_port, guest: 3000, host: 3000
+
   # just in case there is a HTTP_PROXY configured for the host 
   # system, the virtual machine is going to use it
   if ENV.has_key?("http_proxy")
