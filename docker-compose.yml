@@ -30,6 +30,20 @@ services:
       - "5044:5044"
     links:
       - elasticsearch
+<<<<<<< HEAD
+=======
+    environment:
+      http_proxy: ${http_proxy}
+      no_proxy: ${no_proxy}
+  filebeat:
+    build:
+      context: filebeat/
+    volumes:
+      - ./filebeat/filebeat.yml:/filebeat.yml
+      - ./filebeat/log:/log
+    links:
+      - logstash
+>>>>>>> 600438b9923b89fa4137373b9b257625ac33deb8
   provisioner:
     build:
       context: provisioner/
