@@ -10,15 +10,23 @@ services:
       - ./elasticsearch/data:/usr/share/elasticsearch/data
     environment:
       ES_JAVA_OPTS: "-Xms1g -Xmx1g"
+      http_proxy: ${http_proxy}
+      no_proxy: ${no_proxy}
   logstash:
     build:
       context: logstash/
+      args:
+        http_proxy: ${http_proxy}
+        no_proxy: ${no_proxy}
     volumes:
       - ./logstash/config:/etc/logstash/conf.d
     ports:
       - "5044:5044"
     links:
       - elasticsearch
+    environment:
+      http_proxy: ${http_proxy}
+      no_proxy: ${no_proxy}
   filebeat:
     build:
       context: filebeat/
@@ -30,11 +38,9 @@ services:
   provisioner:
     build:
       context: provisioner/
-      #args:
-      #  - http_proxy=
-      #  - HTTP_PROXY=
-      #  - https_proxy=
-      #  - HTTPS_PROXY=
+      args:
+        http_proxy: ${http_proxy}
+        no_proxy: ${no_proxy}
     volumes:
       - "./provisioner/initial_import:/initial_import"
     links:
