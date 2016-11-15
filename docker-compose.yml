@@ -21,6 +21,10 @@ services:
       - "7687:7687"
     links:
       - elasticsearch
+    environment:
+      NEO4J_AUTH: none
+      http_proxy: ${http_proxy}
+      no_proxy: ${no_proxy}
   logstash:
     build:
       context: logstash/
