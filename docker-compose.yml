@@ -69,7 +69,7 @@ services:
       no_proxy: ${no_proxy}
   decorator:
     build:
-      context: decorator/
+      context: decorator/build
       args:
         http_proxy: ${http_proxy}
         no_proxy: ${no_proxy}

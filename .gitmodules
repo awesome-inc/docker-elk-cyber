@@ -1,3 +1,6 @@
 [submodule "logstash/logstash-input-rss2"]
 	path = logstash/logstash-input-rss2
 	url = https://github.com/awesome-inc/logstash-input-rss2.git
+[submodule "decorator/build"]
+	path = decorator/build
+	url = https://github.com/awesome-inc/neo4j-decorator
