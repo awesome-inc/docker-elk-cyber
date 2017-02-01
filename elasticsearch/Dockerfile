@@ -1,4 +1,4 @@
-FROM elasticsearch:5
+FROM elasticsearch:5.1.2
 
 COPY *.sh /
 RUN /install-plugins.sh

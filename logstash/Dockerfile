@@ -1,4 +1,4 @@
-FROM logstash:5
+FROM logstash:5.0.0
 
 # Add your logstash plugins setup here
 # Copy source files
