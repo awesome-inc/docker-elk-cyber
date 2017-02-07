@@ -11,12 +11,14 @@ services:
     environment:
       ES_JAVA_OPTS: "-Xms1g -Xmx1g"
       http_proxy: ${http_proxy}
+      https_proxy: ${https_proxy}
       no_proxy: ${no_proxy}
   logstash:
     build:
       context: logstash/
       args:
         http_proxy: ${http_proxy}
+        https_proxy: ${https_proxy}
         no_proxy: ${no_proxy}
     volumes:
       - ./logstash/config:/etc/logstash/conf.d
@@ -26,6 +28,7 @@ services:
       - elasticsearch
     environment:
       http_proxy: ${http_proxy}
+      https_proxy: ${https_proxy}
       no_proxy: ${no_proxy}
   filebeat:
     build:
@@ -40,6 +43,7 @@ services:
       context: provisioner/
       args:
         http_proxy: ${http_proxy}
+        https_proxy: ${https_proxy}
         no_proxy: ${no_proxy}
     volumes:
       - "./provisioner/initial_import:/initial_import"
