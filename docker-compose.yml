@@ -1,9 +1,10 @@
-version: '2'
+version: '3'
 services:
   elasticsearch:
     build:
       context: elasticsearch/
       args:
+        VERSION: 6.2.3
         http_proxy: ${http_proxy}
         no_proxy: ${no_proxy}
     ports:
@@ -16,10 +17,12 @@ services:
       http_proxy: ${http_proxy}
       https_proxy: ${https_proxy}
       no_proxy: ${no_proxy}
+  
   logstash:
     build:
       context: logstash/
       args:
+        VERSION: 6.2.3
         http_proxy: ${http_proxy}
         https_proxy: ${https_proxy}
         no_proxy: ${no_proxy}
@@ -30,12 +33,13 @@ services:
       no_proxy: ${no_proxy}
     ports:
       - "5044:5044"
-    links:
+    depends_on:
       - elasticsearch
     environment:
       http_proxy: ${http_proxy}
       https_proxy: ${https_proxy}
       no_proxy: ${no_proxy}
+  
   provisioner:
     build:
       context: provisioner/
@@ -45,8 +49,9 @@ services:
         no_proxy: ${no_proxy}
     volumes:
       - "./provisioner/initial_import:/initial_import"
-    links:
+    depends_on:
       - elasticsearch
+  
   kibana:
     build:
       context: kibana/
@@ -54,8 +59,9 @@ services:
        - "./kibana/config/:/etc/kibana/"
     ports:
        - "5601:5601"
-    links:
+    depends_on:
        - elasticsearch
+  
   es2neo4j:
     build:
       context: es2neo4j/
@@ -63,9 +69,10 @@ services:
         http_proxy: ${http_proxy}
         https_proxy: ${https_proxy}
         no_proxy: ${no_proxy}
-    links:
+    depends_on:
       - elasticsearch
       - neo4j
+  
   neo4j:
     build:
       context: neo4j/
@@ -79,20 +86,17 @@ services:
       - "7474:7474"
       - "7473:7473"
       - "7687:7687"
-    links:
+    depends_on:
       - elasticsearch
     environment:
       NEO4J_AUTH: none
       http_proxy: ${http_proxy}
       https_proxy: ${https_proxy}
       no_proxy: ${no_proxy}
+  
   decorator:
-    build:
-      context: decorator/build
-      args:
-        http_proxy: ${http_proxy}
-        no_proxy: ${no_proxy}
+    image: awesomeinc/neo4j-decorator
     ports:
        - "3000:3000"
-    links:
+    depends_on:
        - neo4j

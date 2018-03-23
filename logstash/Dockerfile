@@ -1,4 +1,5 @@
-FROM logstash:5.0.0
+ARG VERSION=6.2.3
+FROM docker.elastic.co/logstash/logstash-oss:${VERSION}
 
 # Add your logstash plugins setup here
 # Copy source files

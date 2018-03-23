@@ -13,9 +13,9 @@ configureProxy()
   # note: assuming same for http/s
   export LS_JAVA_OPTS="-Dhttp.proxyHost=${proxyHost} -Dhttp.proxyPort=${proxyPort} -Dhttps.proxyHost=${proxyHost} -Dhttps.proxyPort=${proxyPort} -Dhttp.nonProxyHosts=$no_proxy -Dhttps.nonProxyHosts=$no_proxy"
 
-  if [ -e "/root/.m2/settings.xml" ]; then return 0; fi
-  mkdir -p /root/.m2/ 
-  cat >/root/.m2/settings.xml <<EOF
+  if [ -e ".m2/settings.xml" ]; then return 0; fi
+  mkdir -p .m2/ 
+  cat >.m2/settings.xml <<EOF
 <settings>
   <proxies>
    <proxy>
