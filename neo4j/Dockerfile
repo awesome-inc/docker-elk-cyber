@@ -1,6 +1,6 @@
-FROM neo4j:3.0.6
+FROM neo4j:3.3.4
 
-ENV APOC_VERSION 3.0.4.2
+ENV APOC_VERSION 3.3.0.2
 
 ADD https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/${APOC_VERSION}/apoc-${APOC_VERSION}-all.jar /var/lib/neo4j/plugins
 
