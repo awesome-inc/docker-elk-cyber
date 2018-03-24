@@ -42,7 +42,7 @@ services:
         https_proxy: ${https_proxy}
         no_proxy: ${no_proxy}
     volumes:
-      - ./logstash/config:/etc/logstash/conf.d
+      - ./logstash/pipeline:/usr/share/logstash/pipeline/
     ports:
       - "5044:5044"
     depends_on:
