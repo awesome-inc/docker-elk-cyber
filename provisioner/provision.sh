@@ -15,7 +15,7 @@ done
 if [[ -d /initial_import && ! -f /initial_import/import_done ]]; then
 	echo "-> Initial import about to be started, waiting another 5s to be sure ES is running"
 	sleep 5
-	
+
 	pushd /initial_import
 	find . -name "*.json" | while IFS= read -r fname; do
 		name=${fname%.json}
@@ -23,9 +23,9 @@ if [[ -d /initial_import && ! -f /initial_import/import_done ]]; then
 		name=${name//_x_/*}
 		echo
 		echo "-> PUTting '${name}' ..."
-		curl -s -X PUT "http://elasticsearch:9200/${name}" -T $fname
+		curl -s -X PUT "http://elasticsearch:9200/${name}" -H "Content-Type: application/json" -T $fname
 	done
 	popd
-	
+
 	touch /initial_import/import_done
 fi
