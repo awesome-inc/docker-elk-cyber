@@ -27,13 +27,14 @@ services:
       network.host: 0.0.0.0
       node.max_local_storage_nodes: 1
       cluster.name: docker-elk-cyber-cluster
+      bootstrap.memory_lock: 'true'
       discovery.type: single-node
       # https://github.com/spinscale/elasticsearch-ingest-opennlp#usage
       ingest.opennlp.model.file.names: en-ner-persons.bin
       ingest.opennlp.model.file.dates: en-ner-dates.bin
       ingest.opennlp.model.file.locations: en-ner-locations.bin
 
-  
+
   logstash:
     build:
       context: logstash/
@@ -42,8 +43,6 @@ services:
         http_proxy: ${http_proxy}
         https_proxy: ${https_proxy}
         no_proxy: ${no_proxy}
-    volumes:
-      - ./logstash/pipeline:/usr/share/logstash/pipeline/
     ports:
       - "5044:5044"
     depends_on:
@@ -54,7 +53,7 @@ services:
       no_proxy: ${no_proxy}
       # cf.: https://www.elastic.co/guide/en/logstash/current/docker-config.html
       #LOG_LEVEL: info
-  
+
   provisioner:
     build:
       context: provisioner/
@@ -66,7 +65,7 @@ services:
       - "./provisioner/initial_import:/initial_import"
     depends_on:
       - elasticsearch
-  
+
   kibana:
     image: docker.elastic.co/kibana/kibana-oss:${ELK_VERSION}
     ports:
@@ -78,7 +77,7 @@ services:
       SERVER_NAME: kibana.docker.cyber
       ELASTICSEARCH_URL: http://elasticsearch:9200
       KIBANA_DEFAULTAPPID: dashboard/Main_Dashboard
-  
+
   es2neo4j:
     build:
       context: es2neo4j/
@@ -89,7 +88,7 @@ services:
     depends_on:
       - elasticsearch
       - neo4j
-  
+
   neo4j:
     build:
       context: neo4j/
@@ -110,7 +109,7 @@ services:
       http_proxy: ${http_proxy}
       https_proxy: ${https_proxy}
       no_proxy: ${no_proxy}
-  
+
   decorator:
     image: awesomeinc/neo4j-decorator
     ports:
