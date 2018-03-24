@@ -71,7 +71,10 @@ services:
     depends_on:
       - elasticsearch
     environment:
-      kibana.defaultAppId: dashboard/Main_Dashboard
+      # cf.: https://www.elastic.co/guide/en/kibana/current/_configuring_kibana_on_docker.html
+      SERVER_NAME: kibana.docker.cyber
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      KIBANA_DEFAULTAPPID: dashboard/Main_Dashboard
   
   es2neo4j:
     build:
