@@ -22,6 +22,7 @@ services:
       http_proxy: ${http_proxy}
       https_proxy: ${https_proxy}
       no_proxy: ${no_proxy}
+      # cf.: https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#docker-configuration-methods
       ES_JAVA_OPTS: "-Xms1g -Xmx1g"
       network.host: 0.0.0.0
       node.max_local_storage_nodes: 1
@@ -51,6 +52,8 @@ services:
       http_proxy: ${http_proxy}
       https_proxy: ${https_proxy}
       no_proxy: ${no_proxy}
+      # cf.: https://www.elastic.co/guide/en/logstash/current/docker-config.html
+      #LOG_LEVEL: info
   
   provisioner:
     build:
