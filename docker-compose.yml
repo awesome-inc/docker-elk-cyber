@@ -2,14 +2,16 @@ version: '3'
 
 volumes:
   es_volume:
+  neo4j_volume:
 
 services:
   elasticsearch:
     build:
       context: elasticsearch/
       args:
-        VERSION: 6.2.3
+        ELK_VERSION: ${ELK_VERSION}
         http_proxy: ${http_proxy}
+        https_proxy: ${https_proxy}
         no_proxy: ${no_proxy}
     ports:
       - "9200:9200"
@@ -35,15 +37,12 @@ services:
     build:
       context: logstash/
       args:
-        VERSION: 6.2.3
+        ELK_VERSION: ${ELK_VERSION}
         http_proxy: ${http_proxy}
         https_proxy: ${https_proxy}
         no_proxy: ${no_proxy}
     volumes:
       - ./logstash/config:/etc/logstash/conf.d
-    environment:
-      http_proxy: ${http_proxy}
-      no_proxy: ${no_proxy}
     ports:
       - "5044:5044"
     depends_on:
@@ -66,14 +65,13 @@ services:
       - elasticsearch
   
   kibana:
-    build:
-      context: kibana/
-    volumes:
-       - "./kibana/config/:/etc/kibana/"
+    image: docker.elastic.co/kibana/kibana-oss:${ELK_VERSION}
     ports:
-       - "5601:5601"
+      - "5601:5601"
     depends_on:
-       - elasticsearch
+      - elasticsearch
+    environment:
+      kibana.defaultAppId: dashboard/Main_Dashboard
   
   es2neo4j:
     build:
@@ -94,7 +92,7 @@ services:
         https_proxy: ${https_proxy}
         no_proxy: ${no_proxy}
     volumes:
-      - ./neo4j/data:/data
+      - neo4j_volume:/data
     ports:
       - "7474:7474"
       - "7473:7473"
@@ -110,6 +108,6 @@ services:
   decorator:
     image: awesomeinc/neo4j-decorator
     ports:
-       - "3000:3000"
+      - "3000:3000"
     depends_on:
-       - neo4j
+      - neo4j

@@ -1,8 +1,8 @@
-ARG VERSION=6.2.3
-FROM docker.elastic.co/elasticsearch/elasticsearch-oss:${VERSION}
+ARG ELK_VERSION
+FROM docker.elastic.co/elasticsearch/elasticsearch-oss:${ELK_VERSION}
 
-ARG VERSION=6.2.3
-ENV ELASTICSEARCH_VERSION $VERSION
+ARG ELK_VERSION
+ENV ELK_VERSION $ELK_VERSION
 COPY ingest-opennlp-*.zip *.sh ./
 RUN ./install-plugins.sh
 
