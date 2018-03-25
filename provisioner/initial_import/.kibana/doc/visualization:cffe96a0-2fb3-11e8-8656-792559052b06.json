@@ -1,0 +1,14 @@
+{
+ "type": "visualization",
+ "updated_at": "2018-03-24T23:17:31.133Z",
+ "visualization": {
+  "description": "",
+  "kibanaSavedObjectMeta": {
+   "searchSourceJSON": "{\"index\":\"27ef04a0-2fb2-11e8-8656-792559052b06\",\"filter\":[],\"query\":{\"query\":\"\",\"language\":\"lucene\"}}"
+  },
+  "title": "Metrics",
+  "uiStateJSON": "{}",
+  "version": 1,
+  "visState": "{\"title\":\"Metrics\",\"type\":\"metric\",\"params\":{\"addTooltip\":true,\"addLegend\":false,\"type\":\"metric\",\"metric\":{\"percentageMode\":false,\"useRanges\":false,\"colorSchema\":\"Green to Red\",\"metricColorMode\":\"None\",\"colorsRange\":[{\"from\":0,\"to\":10000}],\"labels\":{\"show\":true},\"invertColors\":false,\"style\":{\"bgFill\":\"#000\",\"bgColor\":false,\"labelColor\":false,\"subText\":\"\",\"fontSize\":12}}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Events\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"domain.keyword\",\"customLabel\":\"Domains\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"cardinality\",\"schema\":\"metric\",\"params\":{\"field\":\"categories.keyword\",\"customLabel\":\"Topics\"}}]}"
+ }
+}

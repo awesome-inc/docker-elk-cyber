@@ -1,0 +1,16 @@
+{
+ "dashboard": {
+  "description": "",
+  "hits": 0,
+  "kibanaSavedObjectMeta": {
+   "searchSourceJSON": "{\"query\":{\"language\":\"lucene\",\"query\":\"\"},\"filter\":[],\"highlightAll\":true,\"version\":true}"
+  },
+  "optionsJSON": "{\"darkTheme\":false,\"hidePanelTitles\":false,\"useMargins\":true}",
+  "panelsJSON": "[{\"embeddableConfig\":{\"spy\":null},\"gridData\":{\"h\":2,\"i\":\"1\",\"w\":3,\"x\":0,\"y\":0},\"id\":\"cffe96a0-2fb3-11e8-8656-792559052b06\",\"panelIndex\":\"1\",\"type\":\"visualization\",\"version\":\"6.2.3\"},{\"gridData\":{\"h\":4,\"i\":\"2\",\"w\":5,\"x\":3,\"y\":2},\"id\":\"3feac030-2fb7-11e8-8656-792559052b06\",\"panelIndex\":\"2\",\"type\":\"visualization\",\"version\":\"6.2.3\"},{\"gridData\":{\"h\":4,\"i\":\"3\",\"w\":4,\"x\":8,\"y\":2},\"id\":\"09745330-2fb3-11e8-8656-792559052b06\",\"panelIndex\":\"3\",\"type\":\"search\",\"version\":\"6.2.3\"},{\"embeddableConfig\":{\"vis\":{\"legendOpen\":false}},\"gridData\":{\"h\":3,\"i\":\"4\",\"w\":3,\"x\":0,\"y\":4},\"id\":\"d8271cd0-2fb8-11e8-8656-792559052b06\",\"panelIndex\":\"4\",\"type\":\"visualization\",\"version\":\"6.2.3\"},{\"gridData\":{\"h\":2,\"i\":\"5\",\"w\":3,\"x\":0,\"y\":2},\"id\":\"50ea8420-2fb6-11e8-8656-792559052b06\",\"panelIndex\":\"5\",\"type\":\"visualization\",\"version\":\"6.2.3\"},{\"embeddableConfig\":{\"vis\":{\"legendOpen\":false}},\"gridData\":{\"h\":2,\"i\":\"6\",\"w\":4,\"x\":8,\"y\":0},\"id\":\"e6032800-2fb6-11e8-8656-792559052b06\",\"panelIndex\":\"6\",\"type\":\"visualization\",\"version\":\"6.2.3\"},{\"embeddableConfig\":{\"vis\":{\"legendOpen\":false}},\"gridData\":{\"h\":1,\"i\":\"7\",\"w\":4,\"x\":8,\"y\":6},\"id\":\"97d74bb0-2fb7-11e8-8656-792559052b06\",\"panelIndex\":\"7\",\"type\":\"visualization\",\"version\":\"6.2.3\"},{\"gridData\":{\"h\":1,\"i\":\"8\",\"w\":4,\"x\":3,\"y\":6},\"id\":\"0aceaee0-2fba-11e8-8656-792559052b06\",\"panelIndex\":\"8\",\"type\":\"visualization\",\"version\":\"6.2.3\"},{\"embeddableConfig\":{\"vis\":{\"legendOpen\":false}},\"gridData\":{\"h\":2,\"i\":\"9\",\"w\":5,\"x\":3,\"y\":0},\"id\":\"cb8ae4a0-2fba-11e8-8656-792559052b06\",\"panelIndex\":\"9\",\"type\":\"visualization\",\"version\":\"6.2.3\"}]",
+  "timeRestore": false,
+  "title": "Cybernews",
+  "version": 1
+ },
+ "type": "dashboard",
+ "updated_at": "2018-03-24T23:40:57.652Z"
+}

@@ -1,0 +1,14 @@
+{
+ "type": "visualization",
+ "updated_at": "2018-03-24T23:12:38.173Z",
+ "visualization": {
+  "description": "",
+  "kibanaSavedObjectMeta": {
+   "searchSourceJSON": "{\"index\":\"27ef04a0-2fb2-11e8-8656-792559052b06\",\"filter\":[],\"query\":{\"query\":\"\",\"language\":\"lucene\"}}"
+  },
+  "title": "Topics/Entities",
+  "uiStateJSON": "{}",
+  "version": 1,
+  "visState": "{\"title\":\"Topics/Entities\",\"type\":\"pie\",\"params\":{\"type\":\"pie\",\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"isDonut\":true,\"labels\":{\"show\":false,\"values\":true,\"last_level\":true,\"truncate\":100}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Events\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"categories.keyword\",\"otherBucket\":false,\"otherBucketLabel\":\"Other\",\"missingBucket\":false,\"missingBucketLabel\":\"Missing\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Topic\"}}]}"
+ }
+}

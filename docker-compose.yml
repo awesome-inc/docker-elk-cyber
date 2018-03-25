@@ -34,12 +34,10 @@ services:
       ingest.opennlp.model.file.dates: en-ner-dates.bin
       ingest.opennlp.model.file.locations: en-ner-locations.bin
 
-
   logstash:
     build:
       context: logstash/
       args:
-        ELK_VERSION: ${ELK_VERSION}
         http_proxy: ${http_proxy}
         https_proxy: ${https_proxy}
         no_proxy: ${no_proxy}
@@ -47,6 +45,7 @@ services:
       - "5044:5044"
     depends_on:
       - elasticsearch
+      - provisioner
     environment:
       http_proxy: ${http_proxy}
       https_proxy: ${https_proxy}

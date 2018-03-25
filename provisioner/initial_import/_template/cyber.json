@@ -1,23 +1,22 @@
 {
-  "template": "logstash-*",
+  "index_patterns": ["logstash-*"],
   "settings": {
     "index.refresh_interval": "5s"
   },
   "mappings": {
     "_default_": {
-      "_all": {"enabled": true, "norms": false},
       "dynamic_templates": [{
         "message_field": {
           "match": "message",
-          "match_mapping_type": "text",
-          "mapping": { "type": "text", "norms": false }
+          "match_mapping_type": "string",
+          "mapping": { "type": "string", "norms": false }
         }
       }, {
         "text_fields": {
           "match": "*",
-          "match_mapping_type": "text",
+          "match_mapping_type": "string",
           "mapping": {
-            "type": "text", "norms": false,
+            "type": "string", "norms": false,
             "fields": {
               "keyword": {"type": "keyword", "ignore_above": 256}
             }
@@ -33,15 +32,15 @@
         "author": { "type": "keyword", "ignore_above": 256 },
         "categories": { "type": "keyword", "ignore_above": 256 },
         "domain": { "type": "keyword", "ignore_above": 256 },
-        
-        "entities": { 
+
+        "entities": {
           "properties": {
               "names": { "type": "keyword", "ignore_above": 256 },
               "locations": { "type": "keyword", "ignore_above": 256 },
               "dates": { "type": "keyword", "ignore_above": 256 }
           }
         },
-        
+
         "feed_name": { "type": "keyword", "ignore_above": 256 },
         "language": { "type": "keyword", "ignore_above": 256 },
 

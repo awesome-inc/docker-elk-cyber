@@ -1,5 +1,0 @@
-{
-  "buildNum": 14566,
-  "defaultIndex":"logstash-*",
-  "timepicker:timeDefaults" : "{\n  \"from\": \"now/d\",\n  \"to\": \"now/d\",\n  \"mode\": \"quick\"\n}"
-}
