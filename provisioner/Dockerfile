@@ -1,6 +1,5 @@
-FROM debian:jessie
+FROM jruby:9.1.12-alpine
 
-RUN apt-get update && apt-get install -y --no-install-suggests --no-install-recommends netcat curl && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
 
-COPY provision.sh /
-CMD ["/provision.sh"]
+CMD bash -c "./provision.sh"

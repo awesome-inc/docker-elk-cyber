@@ -60,8 +60,10 @@ services:
         http_proxy: ${http_proxy}
         https_proxy: ${https_proxy}
         no_proxy: ${no_proxy}
+    environment:
+      ES_BASE_URI: http://elasticsearch:9200
     volumes:
-      - "./provisioner/initial_import:/initial_import"
+      - ./provisioner/:/app
     depends_on:
       - elasticsearch
 
