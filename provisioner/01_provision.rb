@@ -15,7 +15,7 @@ class Provision
     # end
 
     $stdout.puts "Provisioning '#{es_base_uri}'..."
-    file_names = Dir.glob("#{PATH}/**/*.json").sort
+    file_names = Dir.glob("#{PATH}/**/*.json", File::FNM_DOTMATCH).sort
     file_names.each do |file_name|
       content = File.read file_name
       path = to_path(file_name)

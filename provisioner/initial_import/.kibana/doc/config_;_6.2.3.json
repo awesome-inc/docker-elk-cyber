@@ -1,8 +1,8 @@
 {
- "config": {
-  "buildNum": 16602,
-  "defaultIndex": "27ef04a0-2fb2-11e8-8656-792559052b06"
- },
- "type": "config",
- "updated_at": "2018-03-24T22:24:50.614Z"
+  "config": {
+    "buildNum": 16602,
+    "defaultIndex": "27ef04a0-2fb2-11e8-8656-792559052b06"
+  },
+  "type": "config",
+  "updated_at": "2018-03-24T22:24:50.614Z"
 }
