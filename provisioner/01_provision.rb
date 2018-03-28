@@ -54,7 +54,7 @@ class Provision
     path = file_name
     path.slice!("#{PATH}/")
     path.slice!('.json')
-    FILE_TO_URI.each { |k,v| path.sub!(k,v) }
+    FILE_TO_URI.each { |k, v| path.sub!(k, v) }
     path
   end
 
