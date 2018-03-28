@@ -1,28 +1,28 @@
 require 'json'
 require 'net/http'
 require 'uri'
+require 'fileutils'
 
 # Export Elasticsearch index as a folder
 class Export
-  def self.call(index, path)
-    Export.new(index, path).export
+  def self.call(index, output)
+    Export.new(index, output).export
   end
 
-  def initialize(index, path)
-    @index = index || '.kibana'
-    @path = path || 'export'
+  def initialize(index, output)
+    @index = index
+    @output = output
   end
 
   def export
-    $stdout.puts "Exporting '#{es_base_uri}/#{index}' to #{path}..."
-    docs = fetch_docs
-    docs.each { |doc| save doc }
+    $stdout.puts "Exporting '#{es_base_uri}/#{index}' to #{output}..."
+    fetch_docs.each { |doc| save doc }
     $stdout.puts 'Exporting done.'
   end
 
   private
 
-  attr_reader :index, :path
+  attr_reader :index, :output
 
   HEADER = { 'Content-Type' => 'application/json' }.freeze
 
@@ -41,20 +41,24 @@ class Export
   end
 
   def save(doc)
-    puts "Saving #{doc}..."
+    id = doc['_id']
+    URI_TO_FILE.each { |k, v| id.sub!(k, v) }
+    path = "#{output}/#{doc['_index']}/#{doc['_type']}"
+    FileUtils.mkdir_p path
+    file_name = "#{path}/#{id}.json"
+    File.write file_name, JSON.pretty_generate(doc['_source'])
+    puts "Saved #{file_name}."
   end
 
-  FILE_TO_URI = {
-    '_x_' => '*',
-    '_;_' => ':'
+  URI_TO_FILE = {
+    '*' => '_x_',
+    ':' => '_;_'
   }.freeze
 
-  def to_path(file_name)
-    path = file_name
-    path.slice!("#{PATH}/")
-    path.slice!('.json')
-    FILE_TO_URI.each { |k,v| path.sub!(k,v) }
-    path
+  def to_file_name(doc)
+    file_name = doc['_id']
+    URI_TO_FILE.each { |k, v| file_name.sub!(k, v) }
+    "#{path}/#{doc['_index']}/#{doc['_type']}/#{file_name}}"
   end
 end
 
