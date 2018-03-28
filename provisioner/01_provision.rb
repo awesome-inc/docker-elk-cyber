@@ -2,35 +2,34 @@ require 'json'
 require 'net/http'
 require 'uri'
 
-# Upload files in a folder to Elasticsearchfolder using http PUT 
+# Upload files in a folder to Elasticsearch using http PUT 
 class Provision
-  def self.call
-    Provision.new.provision
+  def self.call(input)
+    Provision.new(input).provision
+  end
+
+  def initialize(input)
+    @input = input
   end
 
   def provision
-    # if File.exist?(IMPORT_DONE)
-    #   $stdout.puts "Already provisioned. Remove file '#{IMPORT_DONE}' to provision again."
-    #   return
-    # end
-
     $stdout.puts "Provisioning '#{es_base_uri}'..."
-    file_names = Dir.glob("#{PATH}/**/*.json", File::FNM_DOTMATCH).sort
-    file_names.each do |file_name|
-      content = File.read file_name
-      path = to_path(file_name)
-      response = upload(content, path)
-      log response, path
-    end
-
-    # File.write(IMPORT_DONE, '')
+    files = Dir.glob("#{input}/**/*.json", File::FNM_DOTMATCH).sort
+    files.each { |file| import file }
     $stdout.puts 'Provisioning done.'
   end
 
   private
 
-  PATH = './initial_import'.freeze
-  IMPORT_DONE = "#{PATH}/import_done".freeze
+  attr_reader :input
+
+  def import(file)
+    content = File.read file
+    path = to_path(file)
+    response = upload(content, path)
+    log response, path
+  end
+
   HEADER = { 'Content-Type' => 'application/json' }.freeze
 
   def es_base_uri
@@ -52,7 +51,7 @@ class Provision
 
   def to_path(file_name)
     path = file_name
-    path.slice!("#{PATH}/")
+    path.slice!("#{input}/")
     path.slice!('.json')
     FILE_TO_URI.each { |k, v| path.sub!(k, v) }
     path
@@ -69,4 +68,5 @@ class Provision
   end
 end
 
-Provision.call
+Provision.call(ARGV[0] || 'import')
+

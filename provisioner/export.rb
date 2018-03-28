@@ -37,7 +37,7 @@ class Export
     res = http.request(request)
     body = JSON.parse(res.body)
     docs = body.dig('hits', 'hits')
-    docs
+    docs.sort_by { |hit| hit.dig('_id') }
   end
 
   def save(doc)
