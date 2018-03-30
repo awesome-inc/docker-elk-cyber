@@ -43,6 +43,7 @@ services:
         no_proxy: ${no_proxy}
     ports:
       - "5044:5044"
+      - "9600:9600"
     depends_on:
       - elasticsearch
       - provisioner
