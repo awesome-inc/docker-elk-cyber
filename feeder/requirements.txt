@@ -1,0 +1,4 @@
+jinja2==2.10
+feedparser==5.2.1
+PyYAML==3.12
+schedule==0.5.0

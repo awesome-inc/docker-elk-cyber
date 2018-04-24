@@ -1,0 +1,6 @@
+---
+feeds:
+  - name: emm
+    url: http://emm.newsbrief.eu/rss?type=rtn&language=en&duplicates=false
+    # seconds
+    interval: 600
