@@ -25,9 +25,7 @@ services:
         http_proxy: ${http_proxy}
         https_proxy: ${https_proxy}
         no_proxy: ${no_proxy}
-    ports:
-      - "9200:9200"
-      - "9300:9300"
+    ports: [ '9200:9200']
     volumes:
       - es_volume:/usr/share/elasticsearch/data
     environment:
@@ -53,9 +51,7 @@ services:
         http_proxy: ${http_proxy}
         https_proxy: ${https_proxy}
         no_proxy: ${no_proxy}
-    ports:
-      - "5044:5044"
-      - "9600:9600"
+    ports: [ '5044:5044' ]
     depends_on:
       - elasticsearch
       - provisioner
@@ -82,8 +78,7 @@ services:
 
   kibana:
     image: docker.elastic.co/kibana/kibana-oss:${ELK_VERSION}
-    ports:
-      - "5601:5601"
+    ports: [ '5601:5601' ]
     depends_on:
       - elasticsearch
     environment:
@@ -125,7 +120,7 @@ services:
       no_proxy: ${no_proxy}
 
   decorator:
-    image: awesomeinc/neo4j-decorator
+    image: awesomeinc/neo4j-decorator:1.0.6
     ports:
       - "3000:3000"
     depends_on:
